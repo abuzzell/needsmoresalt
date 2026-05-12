@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#needsmoresalt - a friendly norm about AI workslop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./styles/fonts.css" rel="stylesheet">
+<style>
+  :root {
+    --salt: #f5f0e8;
+    --pepper: #1a1714;
+    --cast-iron: #2d2926;
+    --flame: #c53d0e;
+    --butter: #e0cea0;
+    --herb: #4d6340;
+    --smoke: #6b6560;
+    --parchment: #faf6ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--pepper);
+    line-height: 1.7;
+  }
+
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--pepper);
+    color: var(--salt);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 .hashtag { color: var(--flame); }
+
+  .hero .subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--butter);
+    font-style: italic;
+  }
+
+  section {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  section p {
+    margin-bottom: 1rem;
+    font-size: 1.02rem;
+    color: var(--cast-iron);
+  }
+
+  section p:last-child { margin-bottom: 0; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    margin: 0;
+  }
+
+  .the-problem h2 { color: var(--flame); }
+
+  .analogy {
+    background: var(--pepper);
+    color: var(--salt);
+    max-width: none;
+    padding: 4rem 2rem;
+  }
+
+  .analogy-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .analogy h2 { color: var(--butter); }
+  .analogy p { color: var(--butter); opacity: 0.9; }
+
+  .tag-example {
+    background: var(--cast-iron);
+    color: var(--flame);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    padding: 1.2rem 2rem;
+    border-radius: 3px;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+
+  .recipe-card {
+    background: var(--salt);
+    border: 2px solid var(--pepper);
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .recipe-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-card ol {
+    list-style: none;
+    counter-reset: steps;
+    padding: 0;
+  }
+
+  .recipe-card ol li {
+    counter-increment: steps;
+    padding: 0.5rem 0 0.5rem 2.2rem;
+    position: relative;
+    font-size: 1rem;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+  }
+
+  .recipe-card ol li:last-child { border-bottom: none; }
+
+  .recipe-card ol li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--pepper);
+    color: var(--salt);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .norms h2 { color: var(--herb); }
+
+  .norm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 560px) {
+    .norm-grid { grid-template-columns: 1fr; }
+  }
+
+  .norm-card {
+    background: white;
+    padding: 1.25rem;
+    border-left: 3px solid var(--herb);
+  }
+
+  .norm-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--herb);
+    margin-bottom: 0.4rem;
+  }
+
+  .norm-card p { font-size: 0.93rem; margin: 0; }
+
+  .not-about .contrast {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1.25rem 0;
+  }
+
+  @media (max-width: 560px) {
+    .not-about .contrast { grid-template-columns: 1fr; }
+  }
+
+  .not-about .col-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
+
+  .not-about .col-head.no { color: var(--flame); }
+  .not-about .col-head.yes { color: var(--herb); }
+
+  .not-about ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .not-about ul li {
+    padding: 0.3rem 0;
+    font-size: 0.93rem;
+    color: var(--cast-iron);
+  }
+
+  .footer-cta {
+    background: var(--pepper);
+    color: var(--salt);
+    text-align: center;
+    max-width: none;
+    padding: 4rem 2rem;
+  }
+
+  .footer-cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .footer-cta h2 {
+    color: var(--butter);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-cta p {
+    color: var(--butter);
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .copy-btn {
+    display: inline-block;
+    background: var(--flame);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn.copied { background: var(--herb); }
+
+  .footer-note {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.82rem;
+    color: var(--smoke);
+    line-height: 1.6;
+  }
+
+  .footer-note a {
+    color: var(--butter);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,213,163,0.3);
+  }
+
+  .footer-note a:hover { border-color: var(--butter); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🧂 <span class="hashtag">#</span>needsmoresalt</h1>
+  <p class="subtitle">Taste your AI before you serve it.</p>
+</div>
+
+<section class="the-problem">
+  <h2>Workslop problems?</h2>
+  <p>Everyone's using generative AI now. Most of the time that's cool, and we shouldn't feel bad about it.</p>
+  <p>But unreviewed AI output (slop!) creates work for other people. You've seen it in tickets, Slack threads, emails, documentation, code comments, etc. Nobody reviewed it before hitting send, and it shows. It's confident about things it shouldn't be. It answers questions nobody asked. It throws a thousand ideas on the wall that all seem like you might need to consider, until you roll up your sleeves and take a close look. Ugh.</p>
+</section>
+
+<hr class="divider">
+
+<div class="analogy">
+  <div class="analogy-inner">
+    <h2>Would you cook for your friends like that?</h2>
+    <p>How hot is this chili crisp? I guess we'll see. Enough lemon? Who knows! Too much garlic? No such thing! Needs salt? If only there was some way to find out in advance...</p><br>
+    <p>You probably wouldn't cook like this. We taste as we go, and tweak and adjust till we get it right. </p><br>
+    <p>AI is a powerful tool that can help us solve problems that are just a little out of reach, automate things that are tedious, and improve the quality of our work. But we can't just hand it off to each other. Read what it wrote. Check whether it's right. Make sure it says what you mean. Put your name on it only when you'd stand behind it and happily chat about it.</p>
+  </div>
+</div>
+
+<section class="how-it-works">
+  <h2>How it works.</h2>
+  <p>When you spot AI output that clearly hasn't been reviewed, and you're debating whether you have the energy to dive in and try to make sense of it, and feeling stressed or resentful, and wondering if its OK to push back, reply:</p>
+
+  <div class="tag-example">#needsmoresalt</div>
+
+  <p>It's not a callout, it's a friendly reminder that we are all responsible for making sense.</p>
+  <p>As authors, we take another pass, make sure we signal what we stand behind, what we aren't sure about, what's speculative, what's a strong view, etc.</p>
+
+  <div class="recipe-card">
+    <h3>The recipe</h3>
+    <ol>
+      <li>Use AI to generate something. Great.</li>
+      <li>Read it. Revise it. Make it yours.</li>
+      <li>Post it. Be prepared to answer questions about it.</li>
+      <li>If someone says #needsmoresalt, take another pass. No hard feelings.</li>
+    </ol>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="norms">
+  <h2>The norms.</h2>
+  <p>This only works if the social contract goes both ways.</p>
+
+  <div class="norm-grid">
+    <div class="norm-card">
+      <div class="label">01</div>
+      <p>Nobody feels bad about <strong>using AI</strong>. We all feel weird about it at times, and they didn't actually ask us before they dropped it on us, but for many of us, in the work we do, this is our life now.</p>
+    </div>
+    <div class="norm-card">
+      <div class="label">02</div>
+      <p>Nobody feels bad about <strong>flagging workslop</strong>. You're helping.</p>
+    </div>
+    <div class="norm-card">
+      <div class="label">03</div>
+      <p>Nobody feels bad when <strong>asked to revise</strong>. It's like someone found a bug in your code. Or they asked for a snack and you sent a turkey dinner by accident. Just check it over.</p>
+    </div>
+    <div class="norm-card">
+      <div class="label">04</div>
+      <p>It goes in <strong>every direction</strong>. I've passed on slop that I should have been called out on. I felt genuinely bad that I wasted someone's time with it.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="not-about">
+  <h2>Why I made this</h2>
+
+  <p>I find I'm increasingly working with people and AI and we need a way to navigate the tendency of genAI to overwhelm us.</p>
+
+  <div class="contrast">
+    <div>
+      <div class="col-head no">I don't mean to:</div>
+      <ul>
+        <li>Shame people for using AI</li>
+        <li>Police how people write</li>
+        <li>Play gotcha</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head yes">What I hope for is:</div>
+      <ul>
+        <li>A nudge to take accountability for what we publish</li>
+        <li>Trying to bootstrap a friendly but useful epistemic norm, not a rule</li>
+        <li>A non-threatening and low-friction feedback mechanism</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.25rem;">Think of it like linking a Stack Overflow answer and writing <em>"I dunno, maybe this?"</em>, that's totally fine. But it's different from presenting that answer as your own considered take. #needsmoresalt is a friendly way to say: this reads like the first thing, and we need the second thing.</p>
+</section>
+
+<div class="footer-cta">
+  <div class="footer-cta-inner">
+    <h2>If you like this, pass it on.</h2>
+    <p>You can link to this as a gentle way to introduce this norm in places you work.</p>
+
+    <button class="copy-btn" onclick="copyTag(this)">#needsmoresalt</button>
+
+    <div class="footer-note">
+      <p>A modest epistemic micro-intervention by <a href="http://andrewbuzzell.ca/">Andrew Buzzell</a>.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyTag(btn) {
+    navigator.clipboard.writeText('#needsmoresalt').then(() => {
+      btn.textContent = 'copied';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '#needsmoresalt';
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  }
+</script>
+
+</body>
+</html>
